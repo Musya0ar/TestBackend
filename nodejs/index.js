@@ -31,17 +31,45 @@ app.post('/user', (req, res) => {
   const sql = `INSERT INTO users (name, email, password) VALUES ('${name}', '${email}', '${password}')`
 
   db.query( sql , (error, result) => {
-    console.log(result)
+    if (error) {
+      console.error("SQL Error:", error); // Log any SQL errors
+      return response(500, null, 'An error occurred while inserting the user', res)
+    }
+    if (result?.affectedRows){ 
+      const data = {
+      isSuccess: result.affectedRows,
+      id: result.insertId}
+      response(200, data ,"Data berhasil dimasukkan", res)
+    }
+    
   })
-  res.send("selesai")
 })
 
 app.put('/user', (req, res) => {
-  response(200, "post", res)
+const {id, name, email, password} = req.body
+const sql = `UPDATE users SET name = '${name}',email = '${email}',password = '${password}' WHERE id = ${id}`
+
+db.query( sql , (error, result) => {
+  if (error) {
+    console.error("SQL Error:", error); // Log any SQL errors
+    return response(500, null, 'An error occurred while inserting the user', res)
+  }
+  response(200, result,"Data berhasil diubah", res)
+})
+
+
 })
 
 app.delete('/user', (req, res) => {
-  response(200, "Delete", res)
+  const {id}= req.body
+  const sql = `DELETE FROM users WHERE id = ${id}`
+
+db.query( sql , (error, result) => {
+  if (error) {
+    console.error("SQL Error:", error); // Log any SQL errors
+    return response(500, null, 'An error occurred id not found', res)
+  }
+  response(200, result,"Data berhasil dihapus", res)})
 })
 
 app.listen(port, () => {
