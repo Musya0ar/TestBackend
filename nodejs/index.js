@@ -10,16 +10,39 @@ app.use(bodyParser.json())
 
 //routes utama /URL /endpoint
 app.get('/', (req, res) => {
-    db.query("SELECT * from users", (error, result) => {
+  const sql = `SELECT * from users`
+    db.query( sql , (error, result) => {
         response(200, result, "get all data from user", res)
     })
  
 })
 
-app.post('/post', (req, res) => {
-    console.log({requesrFromOutsides: req.body})
-    res.send('Got a POST request')
+app.get('/user/:id',(req, res) => {
+  const id = req.params.id
+  const sql = `SELECT * from users WHERE id = ${id}`
+
+  db.query(sql, (error, result) =>{
+  response(200, result,`User dengan id ${id}`, res)
   })
+})
+
+app.post('/user', (req, res) => {
+  const {name, email, password} = req.body
+  const sql = `INSERT INTO users (name, email, password) VALUES ('${name}', '${email}', '${password}')`
+
+  db.query( sql , (error, result) => {
+    console.log(result)
+  })
+  res.send("selesai")
+})
+
+app.put('/user', (req, res) => {
+  response(200, "post", res)
+})
+
+app.delete('/user', (req, res) => {
+  response(200, "Delete", res)
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

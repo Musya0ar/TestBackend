@@ -4,7 +4,7 @@ const response = (statusCode, data, message, res) => {
     res.status(statusCode).json( {
         payload: {
             STATUS_CODES : statusCode,
-            datas : data,
+            data
             
         },
         message : message,
