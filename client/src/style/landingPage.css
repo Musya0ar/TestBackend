@@ -1,0 +1,39 @@
+@import url("../../node_modules/bootstrap/dist/css/bootstrap.css");
+
+.myBG {
+    height: 100vh;
+    background: url("../assets/bg/PixelDevilBridge.png") fixed;
+    background-size: cover;
+    background-position: -20px -100px;
+}
+
+.intro{
+    height: 400px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.welcome {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: 2px 2px 3px #0000006c;
+    letter-spacing: 3px;
+}
+.showcase {
+    height: 1080px;
+    font-family: "Noto Sans Japanese", sans-serif;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    background-color: #2b1055;
+    background: url("/src/assets/bg/bg.png") 
+    center top/calc(260px / 4) fixed;
+}
+
+.card {
+    width: 18rem;
+    max-height: 600px;
+}
