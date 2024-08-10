@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 5000
 const bodyParser = require('body-parser')
 const db = require('./conn')
 const response = require('./response')
@@ -9,7 +9,7 @@ const response = require('./response')
 app.use(bodyParser.json())
 
 //routes utama /URL /endpoint
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   const sql = `SELECT * from users`
     db.query( sql , (error, result) => {
         response(200, result, "get all data from user", res)
@@ -73,5 +73,5 @@ db.query( sql , (error, result) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`listening on port ${port}`)
 })
