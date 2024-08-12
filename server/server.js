@@ -1,14 +1,17 @@
-const express = require('express')
+import cors from 'cors'
+import express from 'express'
 const app = express()
 const port = 5000
-const bodyParser = require('body-parser')
-const db = require('./conn')
-const response = require('./response')
+import bodyParser from 'body-parser'
+import db from './config/conn.js'
+import bcrypt from 'bcrypt'
+
 
 
 app.use(bodyParser.json())
+app.use(cors())
 
-//routes utama /URL /endpoint
+// routes utama /URL /endpoint
 app.get('/api', (req, res) => {
   const sql = `SELECT * from users`
     db.query( sql , (error, result) => {
@@ -26,26 +29,30 @@ app.get('/user/:id',(req, res) => {
   })
 })
 
-app.post('/user', (req, res) => {
+app.post('/user', async(req, res) => {
   const {name, email, password} = req.body
+
+  try {
+    // Hash the password before storing it
+    const hashedPassword = await bcrypt.hash(password, 10)
+
   const sql = `INSERT INTO users (name, email, password) VALUES ('${name}', '${email}', '${password}')`
 
-  db.query( sql , (error, result) => {
+  db.query(sql, [name, email, hashedPassword], (error, result) => {
     if (error) {
-      console.error("SQL Error:", error); // Log any SQL errors
-      return response(500, null, 'An error occurred while inserting the user', res)
+      console.error('SQL Error:', error);
+      return response(500, null, 'An error occurred while inserting the user', res);
     }
-    if (result?.affectedRows){ 
-      const data = {
-      isSuccess: result.affectedRows,
-      id: result.insertId}
-      response(200, data ,"Data berhasil dimasukkan", res)
-    }
-    
-  })
+    const data = { isSuccess: result.affectedRows, id: result.insertId };
+    response(200, data, 'Data berhasil dimasukkan', res);
+  });
+} catch (err) {
+  console.error('Hashing Error:', err);
+  return response(500, null, 'An error occurred while hashing the password', res);
+}
 })
 
-app.put('/user', (req, res) => {
+app.put('/user/', (req, res) => {
 const {id, name, email, password} = req.body
 const sql = `UPDATE users SET name = '${name}',email = '${email}',password = '${password}' WHERE id = ${id}`
 

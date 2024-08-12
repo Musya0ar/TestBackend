@@ -1,4 +1,4 @@
-const { STATUS_CODES } = require("http")
+import { STATUS_CODES } from "http"
 
 const response = (statusCode, data, message, res) => {
     res.status(statusCode).json( {
@@ -15,4 +15,4 @@ const response = (statusCode, data, message, res) => {
         }
     })
 }
-module.exports = response
+export default response
