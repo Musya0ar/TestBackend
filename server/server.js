@@ -13,8 +13,15 @@ app.use(bodyParser.json())
 app.use(cors())
 
 // routes utama /URL /endpoint
-app.get('/api', (req, res) => {
+app.get('/apiuser', (req, res) => {
   const sql = `SELECT * from users`
+    db.query( sql , (error, result) => {
+        response(200, result, "get all data from user", res)
+    })
+ 
+})
+app.get('/apicards', (req, res) => {
+  const sql = `SELECT * from cards`
     db.query( sql , (error, result) => {
         response(200, result, "get all data from user", res)
     })

@@ -19,9 +19,6 @@ function App() {
       {/* Showcase Section */}
       <div className="showcase">
         <Showcase/>
-        <Showcase/>
-        <Showcase/>
-        <Showcase/>
       </div>
       {/* End Showcase Section */}
       <UserList/>

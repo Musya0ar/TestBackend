@@ -4,7 +4,13 @@ const API_URL = 'http://localhost:5000'; // Your Express server URL
 
 // Get all users
 export const getAllUsers = async () => {
-    const response = await axios.get(`${API_URL}/api`);
+    const response = await axios.get(`${API_URL}/apiuser`);
+    return response.data;
+};
+
+// Get all card
+export const getAllCard = async () => {
+    const response = await axios.get(`${API_URL}/apicards`);
     return response.data;
 };
 
