@@ -37,3 +37,155 @@
     width: 18rem;
     max-height: 600px;
 }
+
+.containers {
+    display: grid;
+    place-items: center;
+    margin-inline: 1.5rem;
+    padding-block: 5rem;
+}
+
+.cardContainers {
+    display: grid;
+    row-gap: 3.5rem;
+
+}
+
+.cardArticles {
+    position: relative;
+    overflow: hidden;
+}
+
+.cardImg {
+    width: 328px;
+    border-radius: 1.5rem;
+}
+
+.cardData {
+    width: 280px;
+    background-color: #fff;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 24px #0000005e;
+    border-radius: 1rem;
+    position: absolute;
+    bottom: -9rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    opacity: 0;
+    transition: opacity 1s 1s;
+}
+
+.cardDesc {
+    display: block;
+    font-size: 11px;
+    margin-bottom: .25rem;
+}
+
+.cardTitle {
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: .75rem;
+}
+
+.cardLink {
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+}
+
+.cardLink:hover {
+    text-decoration: underline;
+    color: #2b1055;
+}
+
+.cardArticles:hover .cardData {
+    animation: show-data 1s forwards;
+    opacity: 1;
+    transition: opacity .3s;
+}
+
+.cardArticles:hover {
+    animation: remove-overflow 2s forwards;
+}
+
+.cardArticles:not(:hover) {
+    animation: remove-data 2s forwards;
+}
+.cardArticles:not(:hover) .cardData{
+    animation: show-overflow 1s forwards;
+}
+
+@keyframes show-data {
+    50%{
+        transform: translateY(-10rem);
+    }
+    100%{
+        transform: translateY(-7rem);
+    }
+}
+
+@keyframes remove-overflow{
+    to{
+        overflow: initial;
+    }
+}
+
+@keyframes show-overflow{
+    0%{
+        transform: translateY(-7rem);
+    }
+    50%{
+        transform: translateY(-10rem);
+    }
+    100%{
+        transform: translateY(.5rem);
+    }
+}
+@keyframes remove-data{
+    0%{
+        overflow: initial;
+        pointer-events: none;
+    }
+    50%{
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .containers {
+      margin-inline: 1rem;
+    }
+  
+    .cardData {
+      width: 250px;
+      padding: 1rem;
+    }
+  }
+  
+  /* For medium devices */
+  @media screen and (min-width: 768px) {
+    .cardContainers {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1.5rem;
+    }
+  }
+  
+  /* For large devices */
+  @media screen and (min-width: 1120px) {
+    .containers {
+      height: 100vh;
+    }
+  
+    .cardContainers {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .cardImg {
+      width: 348px;
+    }
+    .cardData {
+      width: 316px;
+      padding-inline: 2.5rem;
+    }
+  }

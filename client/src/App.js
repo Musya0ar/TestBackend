@@ -4,24 +4,28 @@ import "./App.css";
 import Intro from './components/Intro';
 import Showcase from './components/Showcase';
 import UserList from './components/DisplayUser';
+import Cards from './components/Cards';
 
 function App() {
   return (
     <div>
 
       {/* Intro Section */}
-      <div className="myBG">
+      {/* <div className="myBG">
         <NavigationBar/>
         <Intro />
-      </div>
+      </div> */}
       {/* End Intro section */}
       
       {/* Showcase Section */}
-      <div className="showcase">
-        <Showcase/>
-      </div>
+      {/* <div className="showcase">
+        <Showcase/> */}
+        <Cards/>
+        <Cards/>
+        <Cards/>
+      {/* </div> */}
       {/* End Showcase Section */}
-      <UserList/>
+      {/* <UserList/> */}
     </div>
     
   )}

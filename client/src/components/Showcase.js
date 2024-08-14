@@ -33,7 +33,7 @@ const Showcase = () => {
               <div key={cards.id}> {/* Added a key prop for each item */}
                 <Card.Title>{cards.name}</Card.Title>
                 <Card.Text>{cards.description}</Card.Text>
-                <Button variant="primary" href={cards.link}>Go somewhere</Button>
+                <Button variant="primary" href={cards.link}>Link</Button>
               </div>
             ))}
           </>
