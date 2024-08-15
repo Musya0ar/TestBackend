@@ -13,13 +13,13 @@ function App() {
       {/* Intro Section */}
       {/* <div className="myBG">
         <NavigationBar/>
-        <Intro />
-      </div> */}
+        <Intro /> */}
+      {/* </div> */}
       {/* End Intro section */}
       
       {/* Showcase Section */}
-      {/* <div className="showcase">
-        <Showcase/> */}
+      {/* <div className="showcase"> */}
+        {/* <Showcase/> */}
         <Cards/>
         <Cards/>
         <Cards/>

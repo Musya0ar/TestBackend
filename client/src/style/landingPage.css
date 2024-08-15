@@ -33,6 +33,8 @@
     center top/calc(260px / 4) fixed;
 }
 
+
+
 .card {
     width: 18rem;
     max-height: 600px;
@@ -57,7 +59,7 @@
 }
 
 .cardImg {
-    width: 328px;
+    width: 200px;
     border-radius: 1.5rem;
 }
 
